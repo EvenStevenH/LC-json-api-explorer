@@ -8,7 +8,7 @@ const formSuccess = document.getElementById("formSuccess");
 
 // fetch and display posts
 function fetchPosts() {
-	errorDiv.textContent = "Loading..."; // show the loading state
+	errorDiv.textContent = "Loading..."; // show loading state
 
 	fetch("https://jsonplaceholder.typicode.com/posts")
 		.then((response) => {
@@ -20,7 +20,7 @@ function fetchPosts() {
 		.then((posts) => {
 			postList.innerHTML = "";
 			if (!posts || posts.length === 0) {
-				return (postList.innerHTML = "<p>No posts available.");
+				return (postList.innerHTML = "<p>No posts available.</p>");
 			}
 
 			posts.forEach((post) => {
