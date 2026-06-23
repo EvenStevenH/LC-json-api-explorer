@@ -37,7 +37,7 @@ function fetchPosts() {
 		})
 		.catch((error) => {
 			console.error("Error fetching posts:", error);
-			errorDiv.textContent = "Failed to fetch posts. Please try again!";
+			errorDiv.textContent = "Failed to fetch posts!";
 		});
 }
 
@@ -53,7 +53,8 @@ function handleSubmit(event) {
 
 	fetch("https://jsonplaceholder.typicode.com/posts", {
 		method: "POST",
-		body: JSON.stringify({ title, body }),
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ title: title.value, body: body.value }),
 	})
 		.then((response) => {
 			if (!response.ok) {
@@ -64,11 +65,11 @@ function handleSubmit(event) {
 		.then((data) => {
 			formSuccess.textContent = `Post created successfully! ID: ${data.id}`;
 			form.reset();
-			fetchPosts();
+			fetchPosts(); // show new post with the rest, normally
 		})
 		.catch((error) => {
 			console.error("Error fetching posts:", error);
-			formError.textContent = "Failed to create post. Please try again!";
+			formError.textContent = "Failed to create post!";
 		});
 }
 
